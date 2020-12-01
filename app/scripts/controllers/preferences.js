@@ -6,7 +6,6 @@ import ethers from 'ethers'
 import log from 'loglevel'
 import { isPrefixedFormattedHexString } from '../lib/util'
 import { LISTED_CONTRACT_ADDRESSES } from '../../../shared/constants/tokens'
-import { addInternalMethodPrefix } from './permissions'
 import { NETWORK_TYPE_TO_ID_MAP } from './network/enums'
 
 export default class PreferencesController {
@@ -210,7 +209,7 @@ export default class PreferencesController {
   async requestWatchAsset(req, res, next, end) {
     if (
       req.method === 'metamask_watchAsset' ||
-      req.method === addInternalMethodPrefix('watchAsset')
+      req.method === 'wallet_watchAsset'
     ) {
       const { type, options } = req.params
       switch (type) {

@@ -2,7 +2,6 @@ import assert from 'assert'
 import ObservableStore from 'obs-store'
 import sinon from 'sinon'
 import PreferencesController from '../../../../app/scripts/controllers/preferences'
-import { addInternalMethodPrefix } from '../../../../app/scripts/controllers/permissions'
 
 describe('preferences controller', function () {
   let preferencesController
@@ -433,7 +432,7 @@ describe('preferences controller', function () {
       await preferencesController.requestWatchAsset(req, res, asy.next, asy.end)
       sandbox.assert.called(asy.end)
       sandbox.assert.notCalled(asy.next)
-      req.method = addInternalMethodPrefix('watchAsset')
+      req.method = 'wallet_watchAsset'
       req.params.type = 'someasset'
       await preferencesController.requestWatchAsset(req, res, asy.next, asy.end)
       sandbox.assert.calledTwice(asy.end)
